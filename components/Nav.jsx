@@ -25,6 +25,7 @@ const Nav = () => {
         <p className="logo_text">Promptopia</p>
       </Link>
       <div className="sm:flex hidden">
+        
         {isUserLoggedIn ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt"
@@ -79,6 +80,7 @@ const Nav = () => {
               alt="Profile"
               onClick={() => setToggleDropdown((prev) => !prev)}
             />
+
             {toggleDropdown && (
               <div className="dropdown">
                 <Link href="/profile"
@@ -91,13 +93,13 @@ const Nav = () => {
                   onClick={setToggleDropdown(false)}>
                   Create Prompt
                 </Link>
-                <button onClick={()=>{
+                <button onClick={() => {
                   setToggleDropdown(false)
                   signOut()
                 }}
-                className="mt-t w-full black_btn"
+                  className="mt-t w-full black_btn"
                 >
-
+                  Sign Out
                 </button>
               </div>
             )}
