@@ -5,10 +5,10 @@ import { useState, useEffect } from "react"
 import { signIn, signOut, useSession, getProviders } from "next-auth/react"
 
 const Nav = () => {
-  const isUserLoggedIn = false;
+  const isUserLoggedIn = true;
   const [providers, setProviders] = useState(null)
-  useEffect(()=>{
-    const setProviders = async() => {
+  useEffect(() => {
+    const setProviders = async () => {
       const response = await getProviders();
       setProviders(response)
     }
@@ -46,24 +46,59 @@ const Nav = () => {
         ) :
           (
             <>
-            {
-              providers && 
-              Object.values(providers).map((provider)=>(
-                <button
-                type="button"
-                key={provider.name}
-                onClick={()=> signIn(provider.id)}
-                className="black_btn"
-                >
+              {
+                providers &&
+                Object.values(providers).map((provider) => (
+                  <button
+                    type="button"
+                    key={provider.name}
+                    onClick={() => signIn(provider.id)}
+                    className="black_btn"
+                  >
 
-                </button>
-              ))
-            }
+                  </button>
+                ))
+              }
             </>
           )
         }
 
       </div>
+
+{/* Mobile Navigation  */}
+      <div className="sm:hidden flex relative">
+        {isUserLoggedIn ? (
+          <div className="flex">
+            <Image
+              src="/assets/images/logo.svg"
+              width={37}
+              height={37}
+              className=" rounded-full"
+              alt="Profile"
+              onClick={()=>{}}
+
+            />
+          </div>
+        ) : (
+          <>
+            {
+              providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  key={provider.name}
+                  onClick={() => signIn(provider.id)}
+                  className="black_btn"
+                >
+
+                </button>
+              ))
+            }
+          </>
+        )}
+
+      </div>
+
     </nav>
   )
 }
