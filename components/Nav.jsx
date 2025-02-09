@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react"
 const Nav = () => {
   const isUserLoggedIn = true;
   const [providers, setProviders] = useState(null)
-  const [toggleDropdown, setToggleDropdown] = useState(true)
+  const [toggleDropdown, setToggleDropdown] = useState(false)
 
   useEffect(() => {
     const fetchProviders = async () => {  // Renamed function
@@ -93,12 +93,12 @@ const Nav = () => {
               <div className="dropdown">
                 <Link href="/profile"
                   className="dropdown_link"
-                  onClick={setToggleDropdown((false))}>
+                  onClick={()=>setToggleDropdown((false))}>
                   My Profile
                 </Link>
                 <Link href="/create-prompt"
                   className="dropdown_link"
-                  onClick={setToggleDropdown(false)}>
+                  onClick={()=>setToggleDropdown(false)}>
                   Create Prompt
                 </Link>
                 <button onClick={() => {
