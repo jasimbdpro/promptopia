@@ -10,12 +10,13 @@ const Nav = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false)
 
   useEffect(() => {
-    const setProviders = async () => {
+    const fetchProviders = async () => {  // Renamed function
       const response = await getProviders();
-      setProviders(response)
-    }
-    setProviders()
-  }, [])
+      setProviders(response);  // Now it correctly sets the state
+    };
+    fetchProviders();
+  }, []);
+  
   return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className=" flex gap-2 flex-center">
