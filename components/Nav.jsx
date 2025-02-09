@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react"
 const Nav = () => {
   const isUserLoggedIn = true;
   const [providers, setProviders] = useState(null)
-  const [toggleDropdown, setToggleDropdown] = useState(false)
+  const [toggleDropdown, setToggleDropdown] = useState(true)
 
   useEffect(() => {
     const fetchProviders = async () => {  // Renamed function
@@ -16,6 +16,9 @@ const Nav = () => {
     };
     fetchProviders();
   }, []);
+  useEffect(() => {
+    console.log(toggleDropdown);
+  }, [toggleDropdown]); // This will log whenever `toggleDropdown` changes
   
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -70,6 +73,7 @@ const Nav = () => {
       </div>
 
       {/* Mobile Navigation  */}
+      {console.log(toggleDropdown)}
       <div className="sm:hidden flex relative">
         {isUserLoggedIn ? (
           <div className="flex">
@@ -79,14 +83,17 @@ const Nav = () => {
               height={37}
               className=" rounded-full"
               alt="Profile"
-              onClick={()=>setToggleDropdown((priv)=>!priv)}
+              onClick={()=>{
+                setToggleDropdown((priv)=>!priv);
+               
+              }}
             />
 
             {toggleDropdown && (
               <div className="dropdown">
                 <Link href="/profile"
                   className="dropdown_link"
-                  onClick={setToggleDropdown(false)}>
+                  onClick={setToggleDropdown((false))}>
                   My Profile
                 </Link>
                 <Link href="/create-prompt"
