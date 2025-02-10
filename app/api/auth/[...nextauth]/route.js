@@ -1,9 +1,7 @@
-import NextAuth from "@node_modules/next-auth";
+import { connectToBd } from "@utils/database";
+import NextAuth from "next-auth";
 import GoogleProvider from 'next-auth/providers/google'
-console.log({
-    clientId: process.env.GOOGLE_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-})
+
 const handler = NextAuth({
     providers: [
         GoogleProvider({
@@ -11,12 +9,23 @@ const handler = NextAuth({
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         })
     ],
-    async session({session}){
+    async session({ session }) {
 
     },
-    async signIn({profile}){
+    async signIn({ profile }) {
+        try {
+            //serverless  -> Lambda function >dynamodb
+            await connectToBd();
+            //check user is exit
 
+            //create new user4
+            return true;
+        } catch (error) {
+            console.log(error)
+            return false;
+
+        }
     }
 })
 
-export {handler as GET, handler as POST}
+export { handler as GET, handler as POST }
