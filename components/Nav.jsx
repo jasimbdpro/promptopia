@@ -2,19 +2,21 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { signIn, signOut, useSession, getProviders } from "next-auth/react"
+import { signIn, signOut, useSession, getProviders,  } from "next-auth/react"
 
 const Nav = () => {
-  const isUserLoggedIn = true;
+  
+  const {data: session} = useSession();
+
   const [providers, setProviders] = useState(null)
   const [toggleDropdown, setToggleDropdown] = useState(false)
 
   useEffect(() => {
-    const fetchProviders = async () => {  // Renamed function
+    const setUpProviders = async () => {  // Renamed function
       const response = await getProviders();
       setProviders(response);  // Now it correctly sets the state
     };
-    fetchProviders();
+    setUpProviders();
   }, []);
   useEffect(() => {
     console.log(toggleDropdown);
@@ -30,7 +32,7 @@ const Nav = () => {
       </Link>
       <div className="sm:flex hidden">
         
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt"
               className="black_btn"
@@ -75,7 +77,7 @@ const Nav = () => {
       {/* Mobile Navigation  */}
       {console.log(toggleDropdown)}
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image
               src="/assets/images/logo.svg"
