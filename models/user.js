@@ -5,10 +5,16 @@ const UserSchema = newSchema({
         unique: [true, "Email already exist"],
         required: [true, "Email is required"]
     },
-    username: {
+    match: [
+        /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/, 
+        "Username invalid, it should contain 8-20 alphanumeric characters and be unique!"
+      ]
+    },
+    image: {
         type: String,
-        required: true,
-        match[/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})
-    [a-zA-Z0-9._]+(?<![_.])$/, "Username invalid, it should contain 8-20 alphaneumeric letters and be unique!"]
+
     }
 })
+
+const users = models.User || model("User", UserSchema);
+export default User;
