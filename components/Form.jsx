@@ -4,8 +4,9 @@ const Form = ({ type, post, setPost, setSubmitting, submitting, handleSubmit,
 }) => {
   return (
     <section className=' w-full max-w-full flex-start flex-col'>
-      <h1 className=' head_text text-left'>{type}</h1>
-      <span className="blue_gradient">{type} Post</span>
+      <h1 className=' head_text text-left'>
+        <span className="blue_gradient">{type} Post</span>
+      </h1>
       <p className="desc text-left max-w-md">
         {type} and share amazing prompt with the world, and let your imagination run wild with any AI powered platform.
       </p>
@@ -42,9 +43,9 @@ const Form = ({ type, post, setPost, setSubmitting, submitting, handleSubmit,
           <button
             type='submit'
             disabled={submitting}
-            className=' px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white'
+            className=' px-5 py-1.5 text-sm bg-orange-600 rounded-full text-white'
           >
-
+            Create
           </button>
         </div>
       </form>
