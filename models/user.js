@@ -15,9 +15,10 @@ const UserSchema = new Schema({
     },
     image: {
         type: String,
-
     }
-})
+},
+    { collection: "share_prompte_users" }
+)
 
 const User = models.User || model("User", UserSchema);
 export default User;
