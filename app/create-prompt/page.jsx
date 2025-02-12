@@ -6,7 +6,7 @@ import useRouter from 'next/navigation'
 import Form from '@components/Form'
 
 const CreatePrompt = () => {
-    const [setsubmitting, setSetsubmitting] = useState(false)
+    const [submitting, setSubmitting] = useState(false)
     const [post, setPost] = useState({
         prompt: ""
         ,
@@ -21,7 +21,8 @@ const CreatePrompt = () => {
             type='Create'
             post={post}
             setPost={setPost}
-            setSetsubmitting={setSetsubmitting}
+            submitting={submitting}
+            setSubmitting={setSubmitting}
             handleSubmit={createPrompt}
         />
     )
