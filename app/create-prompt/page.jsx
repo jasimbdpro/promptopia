@@ -10,10 +10,10 @@ const CreatePrompt = () => {
     const { data: session } = useSession();
     const [submitting, setSubmitting] = useState(false)
     const [post, setPost] = useState({
-        prompt: ""
-        ,
-        tag: ""
+        prompt: "",
+        tag: "",
     })
+
     const createPrompt = async (e) => {
         e.preventDefault()
         setSubmitting(true)

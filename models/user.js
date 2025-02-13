@@ -17,7 +17,7 @@ const UserSchema = new Schema({
         type: String,
     }
 },
-    { collection: "share_prompte_users" }
+    { collection: "users" }
 )
 
 const User = models.User || model("User", UserSchema);
