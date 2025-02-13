@@ -1,4 +1,4 @@
-import { connectToBd } from "@utils/database";
+import { connectToDb } from "@utils/database";
 import NextAuth from "next-auth";
 import GoogleProvider from 'next-auth/providers/google'
 import User from "@models/user"
@@ -20,7 +20,7 @@ const handler = NextAuth({
         async signIn({ profile }) {
             try {
                 //serverless  -> Lambda function >dynamodb
-                await connectToBd();
+                await connectToDb();
                 //check user is exit
                 const userExists = await User.findOne({
                     email: profile.email
